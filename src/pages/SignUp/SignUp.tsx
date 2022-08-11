@@ -80,7 +80,7 @@ export const SignUp = () => {
                             >
                                 <option></option>
                                 {stateList.map((item: any, index)=>
-                                    <option key={index} value={item.id}>{item.name}</option>
+                                    <option key={index} value={item._id}>{item.name}</option>
                                 )}
                             </select>
                         </div>

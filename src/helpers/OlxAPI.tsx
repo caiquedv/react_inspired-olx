@@ -3,6 +3,27 @@ import qs from 'qs'
 
 const BASEAPI = 'http://alunos.b7web.com.br:501';
 
+const apiFetchFile = async (endpoint, body) => {
+    if (!body.token) {
+        let token = Cookies.get('token');
+        if (token) {
+            body.append('token', token);
+        }
+    }
+    const res = await fetch(BASEAPI + endpoint, {
+        method: 'POST',
+        body
+    });
+    const json = await res.json();
+
+    if (json.notallowed) {
+        window.location.href = '/signin';
+        return;
+    }
+
+    return json;
+}
+
 const apiFetchPost = async (endpoint, body) => {
 
     if (!body.token) {
@@ -22,7 +43,7 @@ const apiFetchPost = async (endpoint, body) => {
     const json = await res.json();
 
     if (json.notallowed) {
-        window.location.href = 'signin';
+        window.location.href = '/signin';
         return;
     }
 
@@ -83,6 +104,22 @@ export const OlxAPI = {
         const json = await apiFetchGet(
             '/ad/list',
             options
+        );
+        return json;
+    },
+
+    getAd: async (id, other = false) => {
+        const json = await apiFetchGet(
+            '/ad/item',
+            {id, other}
+        );
+        return json;
+    },
+
+    addAd: async (fData) => {
+        const json = await apiFetchFile(
+            '/ad/add',
+            fData
         );
         return json;
     }
