@@ -9,7 +9,9 @@ import { doLogin } from "../../helpers/AuthHandler";
 
 //suporte@b7web.com.br 12345
 
-export const SignUp = () => {
+// teste 321 PB teste@teste.com 1234 -invalido --> $2b$10$rZQw55gn5t8moxSQA1JTJeDqSB0x8bh/ybMMW7Cg3eoG.Yrkbu24C
+
+export const SignUp = () => { 
     const [name, setName] = useState('');
     const [stateLoc, setStateLoc] = useState('');
     const [email, setEmail] = useState('');
@@ -41,11 +43,13 @@ export const SignUp = () => {
         }
 
         const json = await OlxAPI.register(name, email, password, stateLoc);
-
+        // console.log()
+        // alert(json.token)
         if (json.error) {
             setError(json.error);
         } else {
             doLogin(json.token);
+            
             window.location.href = '/';
         }
         setDisabled(false);

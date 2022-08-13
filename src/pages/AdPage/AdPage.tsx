@@ -11,7 +11,7 @@ import "react-slideshow-image/dist/styles.css";
 
 export const AdPage = () => {
     const { id } = useParams();
-
+    // console.log(useParams());
     const [loading, setLoading] = useState(true);
     const [adInfo, setAdInfo]: any = useState({});
 
@@ -22,7 +22,7 @@ export const AdPage = () => {
             setLoading(false);
         }
         getAdInfo(id);
-    }, []);
+    }, [id]);
 
     const formatDate = (date) => {
         let cDate = new Date(date);

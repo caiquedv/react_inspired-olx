@@ -6,6 +6,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { OlxAPI } from "../../helpers/OlxAPI";
 import { AdItem } from "../../components/AdItem/AdItem";
 let timer;
+
 export const Ads = () => {
     const navigate = useNavigate();
 

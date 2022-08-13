@@ -30,6 +30,7 @@ export const PageArea = styled.div`
                     border-radius: 3px;
                     outline: 0;
                     border: 1px solid #999;
+                    background-color: #FFF;
                     transition: all ease .4s;
 
                     &:focus {

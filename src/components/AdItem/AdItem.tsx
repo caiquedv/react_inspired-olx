@@ -18,6 +18,10 @@ export const AdItem = (props) =>{
         <Item className="adItem">
             <Link to={`/ad/${props.data.id}`}>
                 <div className="itemImage">
+                    {props.data.images &&
+                        props.data.images.map((item, index) =>
+                        <img key={index} src={`http://alunos.b7web.com.br:501/media/${item.url}`} alt="" />
+                    )}
                     <img src={props.data.image} alt="" />
                 </div>
                 <div className="itemName">{props.data.title}</div>

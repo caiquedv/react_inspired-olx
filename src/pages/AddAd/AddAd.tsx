@@ -70,7 +70,6 @@ export const AddAd = () => {
         } else {
             setError(errors.join("\n"));
         }
-
         setDisabled(false);
 
     }

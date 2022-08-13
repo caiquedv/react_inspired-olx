@@ -1,7 +1,7 @@
 import { HeaderArea } from "./styled";
 import { Link } from 'react-router-dom'
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { isLogged, doLogout } from "../../helpers/AuthHandler";
 
 export const Header = () => {
@@ -11,6 +11,18 @@ export const Header = () => {
         doLogout();
         window.location.href = '/';
     }
+    // console.log(window.location.pathname)
+
+    const [location, setLocation] = useState('');
+
+    useEffect(()=>{
+        const getLocation = (x) => {
+            setLocation(x);
+        }
+        getLocation(window.location.pathname);
+        
+    }, [window.localStorage]);
+    
 
     return (
         <HeaderArea>
