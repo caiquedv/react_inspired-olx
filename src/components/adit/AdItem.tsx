@@ -2,13 +2,9 @@ import React, { useState } from "react";
 import { Item } from './styled';
 import { Link } from 'react-router-dom';
 
-interface Props {
-    onClick: () => void;
-}
-
 export const AdItem = (props) =>{
-    const [disabledModal, setDisabledModal] = useState(true);
-   
+    const [disabledModal, setDisabledModal] = useState(false);
+
     let price = '';
 
     if(props.data.priceNegotiable) {
@@ -25,16 +21,12 @@ export const AdItem = (props) =>{
                         props.data.images.map((item, index) =>
                         <img key={index} src={`http://alunos.b7web.com.br:501/media/${item.url}`} alt="" />
                     )}
-                     {!props.data.images &&
-                        <img src={props.data.image} alt="" />
-                    }
+                    <img src={props.data.image} alt="" />
                 </div>
                 <div className="itemName">{props.data.title}</div>
-                <div className="itemPrice">{price}</div>    
+                <div className="itemPrice">{price}</div>
+                <button onClick={() => alert(true)}>Editar</button>
             </Link>
-                 {props.data.images &&
-                        <button>Editar</button>
-                    }
         </Item>
     );
 }

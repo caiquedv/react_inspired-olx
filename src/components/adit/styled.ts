@@ -28,7 +28,6 @@ a {
 
     .itemName {
         font-weight: bold;
-        font-size: 14px;
     }
 }
 `;

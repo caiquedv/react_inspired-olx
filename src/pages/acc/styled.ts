@@ -1,6 +1,12 @@
 import styled from "styled-components";
 import { PageContainer  } from "../../AppStyles";
 
+export const MyAccArea = styled(PageContainer)`
+h1 {
+    text-align: center;
+}
+`;
+
 export const PageArea = styled.div`
 display: flex;
 flex-direction: column;
@@ -57,17 +63,30 @@ form {
         border: none;
         margin: 0;
     }
-}
-`;
+    /* .userInfo {
+        margin: 0;
+        padding: 0 25px;
+        list-style: none;
+        width:100%;
+        background-color: #FFF;
+       
 
-export const MyAccArea = styled(PageContainer)`
-text-align: center;
+        & li {
+            padding: 25px 0;
+            display: flex;
+            justify-content: space-between;
+        }
 
-h1 {
-    text-align: center;
+        & hr{
+            height: 1px;
+            background-color: #ccc;
+            border: none;
+            margin: 0;
+        }
+    } */
 }
 
-.list {
-    flex-wrap: wrap;
-}
+.userAds {
+    
+}   
 `;

@@ -141,7 +141,7 @@ export const AddAd = () => {
                     <label htmlFor="description" className="area">
                         <div className="area--title">Descrição</div>
                         <div className="area--input">
-                            <textarea name="description" id="description"
+                            <textarea name="description" id="description" // cols="30" rows="10"
                                 disabled={disabled}
                                 value={desc}
                                 onChange={e => setDesc(e.target.value)}
