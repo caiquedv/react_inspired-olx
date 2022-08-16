@@ -11,6 +11,7 @@ import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 export const UserAdsForm = (userJson) => {
     const fileField: any = useRef();
 
+    const [adId, setAdId] = useState('');
     const [adTitle, setAdTitle] = useState('');
     const [adStatus, setAdStatus] = useState(Boolean);
     const [adCategory, setAdCategory] = useState('');
@@ -18,7 +19,7 @@ export const UserAdsForm = (userJson) => {
     const [adNegPrice, setNegPrice] = useState(false);
     const [adPrice, setAdPrice] = useState('');
     const [adDescription, setAdDescription] = useState('');
-    const [adImages, setAdImages] = useState([]);
+    const [adImages, setAdImages]: any = useState([]);
 
     const [userAds, setUserAds] = useState([]);
     const [categories, setCategories] = useState([]);
@@ -40,6 +41,7 @@ export const UserAdsForm = (userJson) => {
 
     const modalHandler = (e, adItem?) => {
         let btnId = e.target.id;
+
         if (btnId !== 'close') {
             e.preventDefault();
 
@@ -52,6 +54,9 @@ export const UserAdsForm = (userJson) => {
             setAdPrice(adItem.price);
             setAdDescription(adItem.description);
             setAdImages(adItem.images);
+            setAdId(adItem.id);
+            console.log(adItem);
+            
         } else {
             setDisabledModal(true);
             setDeletedImages([])
@@ -59,11 +64,7 @@ export const UserAdsForm = (userJson) => {
     };
 
     const delImage = (e, url) => {
-        // let imgsCopy = [...adImages]
-        // imgsCopy.splice(index); submit... ideia ruim
-        //ideia boa: no submit envia as imagens que não estiverem em deletedImages dps zero esse array
-        // console.log(adImages)
-        const newArray = () => {
+        const filterDelImages = () => {
             return deletedImages.filter((item) => item != url);
         };
 
@@ -72,17 +73,53 @@ export const UserAdsForm = (userJson) => {
         if (btnValue != 'Desfazer') {
             setDeletedImages(arr => [...arr, url]);
         } else {
-            setDeletedImages(newArray);
+            setDeletedImages(filterDelImages);
         }
     };
 
-    const handleSubmit = (e) => {
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(e.nativeEvent.submitter.id)
+        setDisabled(true);
+        setError('');
+        let errors: any[] = [];
+        let newImage: any = [];
+        console.log(adIdCategory)
+        if (errors.length === 0) {
+            const fData: any = new FormData();
+            fData.append('title', adTitle);
+            fData.append('status', adStatus);
+            fData.append('price', adPrice);
+            fData.append('priceneg', adNegPrice);
+            fData.append('desc', adDescription);
+            fData.append('cat', adIdCategory);
+            if (deletedImages[0]) {
+                adImages.map((item) => {
+                    if (!deletedImages.includes(item.url)) newImage.push(item);
+                });
+                fData.append('images', newImage)
+            };
+
+            if (fileField.current.files.length > 0) {
+                for (let i = 0; i < fileField.current.files.length; i++) {
+                    fData.append('img', fileField.current.files[i]);
+                }
+            }
+            const json = await OlxAPI.updateAds(fData, adId);
+            if (!json.error) {
+                setDisabledModal(true);
+                return;
+            } else {
+                setError(json.error);
+            }
+        } else {
+            setError(errors.join("\n"));
+        }
+        setDisabled(false);
     };
 
     useEffect(() => {
-        const getEditableAds = async (json) => {
+        const getEditableAds = (json) => {
             try {
                 const userData = json.userData;
                 setUserAds(userData.ads);
@@ -108,11 +145,12 @@ export const UserAdsForm = (userJson) => {
                 </div>
             )}
             {!disabledModal &&
-                // {error &&
-                //     <ErrorMessage>{error}</ErrorMessage>
-                // }
+
 
                 <FormArea>
+                    {error &&
+                        <div>{error}</div>
+                    }
                     <form onSubmit={handleSubmit}>
                         <button id="close" onClick={(e) => modalHandler(e)}>X</button>
 

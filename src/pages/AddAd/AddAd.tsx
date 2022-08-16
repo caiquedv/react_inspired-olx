@@ -59,9 +59,9 @@ export const AddAd = () => {
                     fData.append('img', fileField.current.files[i]);
                 }
             }
-            console.log(fData + '1');
+            console.log(fData)
             const json = await OlxAPI.addAd(fData);
-            console.log(fData+'2');
+            
             if(!json.error) {
                 navigate(`/ad/${json.id}`);
                 return;
@@ -107,7 +107,7 @@ export const AddAd = () => {
                         <div className="area--input">
                             <select name="categories" id=""
                                 disabled={disabled}
-                                onChange={e => console.log(categories)}
+                                onChange={e => setCategory(e.target.value)}
                                 required
                             >
                                 <option></option>

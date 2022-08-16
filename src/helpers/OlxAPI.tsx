@@ -170,5 +170,13 @@ export const OlxAPI = {
             }
         );
         return response;
+    },
+
+    updateAds: async (fData, adId) => {
+        const json = await apiFetchFile(
+            `/ad/${adId}`,
+            fData
+        );
+        return json;
     }
 }
