@@ -1,73 +1,22 @@
 import styled from "styled-components";
 import { PageContainer  } from "../../AppStyles";
 
-export const PageArea = styled.div`
+export const MyAccContainer = styled(PageContainer)`
 display: flex;
 flex-direction: column;
-align-items: center;
-
-form {
-    flex:1;
-    width: 100%;
-    max-width: 600px;
-    background-color: #FFF;
-    border-radius: 5px;
-    box-shadow: 0 0 4px #999;
-    padding: 0 15px;
-    transition: all ease 0.3s;
-
-    .area {
-        display: flex;
-        justify-content: space-between;
-        padding: 15px 0;
-
-        .area--input {
-            input, select {
-                text-align: right;
-                margin-right: 10px;
-                outline: 0;
-                border: 1px solid #999;
-                color: #333;
-                background-color: #fff;
-                transition: all ease 0.3s;
-                border-radius: 5px;
-
-                &:focus {
-                    border: 1px solid #333;
-                }
-
-                &:disabled {
-                    color: #777;
-                    border: 0;
-                }
-            }
-
-            & button {
-                background-color: unset;
-                border: 0;
-                color: #00F;
-                cursor: pointer;
-            }
-        }
-    }
-
-    & hr {
-        height: 1px;
-        background-color: #ccc;
-        border: none;
-        margin: 0;
-    }
-}
-`;
-
-export const MyAccArea = styled(PageContainer)`
 text-align: center;
 
 h1 {
     text-align: center;
 }
 
-.list {
-    flex-wrap: wrap;
+.personalArea {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+/* .list {
+    flex-wrap: wrap;
+} */
 `;

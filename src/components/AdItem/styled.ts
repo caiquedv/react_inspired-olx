@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const Item = styled.div`
+height: 100%;
+
 a {
     display: flex;
     flex-direction: column;
@@ -13,7 +15,7 @@ a {
     color: #000;
     background-color: #FFF;
     transition: all ease .2s;
-    height: 90%;
+    /* height: 90%; */
     text-align: center;
 
     &:hover {

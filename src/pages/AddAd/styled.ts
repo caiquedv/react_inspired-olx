@@ -20,8 +20,9 @@ export const PageArea = styled.div`
                 font-weight: bold;
                 font-size: 14px;
             }
-            .area--input {
+            .area--input:not(#negotiable) {
                 flex: 1;
+                text-align: center;
 
                 input:not(#remember, #negotiable), select, textarea {
                     width: 100%;

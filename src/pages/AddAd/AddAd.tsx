@@ -52,15 +52,16 @@ export const AddAd = () => {
             fData.append('priceneg', priceNegotiable);
             fData.append('desc', desc);
             fData.append('cat', category);
+            
 
             if(fileField.current.files.length > 0) {
                 for (let i = 0; i < fileField.current.files.length; i++) {
                     fData.append('img', fileField.current.files[i]);
                 }
             }
-
+            console.log(fData + '1');
             const json = await OlxAPI.addAd(fData);
-
+            console.log(fData+'2');
             if(!json.error) {
                 navigate(`/ad/${json.id}`);
                 return;
@@ -106,7 +107,7 @@ export const AddAd = () => {
                         <div className="area--input">
                             <select name="categories" id=""
                                 disabled={disabled}
-                                onChange={e => setCategory(e.target.value)}
+                                onChange={e => console.log(categories)}
                                 required
                             >
                                 <option></option>
@@ -158,12 +159,12 @@ export const AddAd = () => {
                             />
                         </div>
                     </label>
-                    <label htmlFor="submit" className="area">
+                    <div className="area">
                         <div className="area--title"></div>
                         <div className="area--input">
                             <button id="submit" name="submit" disabled={disabled}>Adicionar Anúncio</button>
                         </div>
-                    </label>
+                    </div>
                 </form>
             </PageArea>
         </PageContainer>

@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-export const Template = styled.div``;
+export const Template = styled.div`
+overflow-y: hidden;
+`;
 
 export const PageContainer = styled.div`
     max-width: 1000px;
@@ -17,7 +19,7 @@ export const ErrorMessage = styled.div`
     /* margin: 10px 0; */
     background-color: #FFCACA;
     color: #000;
-    border: 2px solid #F00;
+    border: 2px solid #ff8383;
     font-size: 14px;
     padding: 0 10px;
 `;
