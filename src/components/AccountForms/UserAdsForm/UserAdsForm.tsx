@@ -220,7 +220,7 @@ export const UserAdsForm = (userJson) => {
 
                         <div className="area">
                             <div className="area--input">
-                                <button id="submit" name="submit" disabled={false}>Adicionar Anúncio</button>
+                                <button id="submit" disabled={false}>Adicionar Anúncio</button>
                             </div>
                         </div>
                     </form>
