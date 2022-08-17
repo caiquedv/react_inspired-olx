@@ -15,7 +15,7 @@ export const UserAdsForm = (userJson) => {
     const [adTitle, setAdTitle] = useState('');
     const [adStatus, setAdStatus] = useState(Boolean);
     const [adCategory, setAdCategory] = useState('');
-    const [adIdCategory, setAdIdCategory] = useState(''); // usado p enviar o id da categoria na req
+    const [adSlugIdCategory, setAdSlugIdCategory] = useState(''); // usado p enviar o id da categoria na req
     const [adNegPrice, setNegPrice] = useState(false);
     const [adPrice, setAdPrice] = useState('');
     const [adDescription, setAdDescription] = useState('');
@@ -84,7 +84,7 @@ export const UserAdsForm = (userJson) => {
         setError('');
         let errors: any[] = [];
         let newImage: any = [];
-        console.log(adIdCategory)
+        console.log(adSlugIdCategory)
         if (errors.length === 0) {
             const fData: any = new FormData();
             fData.append('title', adTitle);
@@ -92,19 +92,19 @@ export const UserAdsForm = (userJson) => {
             fData.append('price', adPrice);
             fData.append('priceneg', adNegPrice);
             fData.append('desc', adDescription);
-            fData.append('cat', adIdCategory);
-            if (deletedImages[0]) {
-                adImages.map((item) => {
-                    if (!deletedImages.includes(item.url)) newImage.push(item);
-                });
-                fData.append('images', newImage)
-            };
+            fData.append('cat', adSlugIdCategory);
+            // if (deletedImages[0]) {
+            //     adImages.map((item) => {
+            //         if (!deletedImages.includes(item.url)) newImage.push(item);
+            //     });
+            //     fData.append('images', newImage)
+            // };
 
-            if (fileField.current.files.length > 0) {
-                for (let i = 0; i < fileField.current.files.length; i++) {
-                    fData.append('img', fileField.current.files[i]);
-                }
-            }
+            // if (fileField.current.files.length > 0) {
+            //     for (let i = 0; i < fileField.current.files.length; i++) {
+            //         fData.append('img', fileField.current.files[i]);
+            //     }
+            // }
             const json = await OlxAPI.updateAds(fData, adId);
             if (!json.error) {
                 setDisabledModal(true);
@@ -182,13 +182,13 @@ export const UserAdsForm = (userJson) => {
                             <div className="area--input">
                                 <select name="categories" id=""
                                     disabled={disabled}
-                                    onChange={e => setAdIdCategory(e.target.value)}
+                                    onChange={e => setAdSlugIdCategory(e.target.value)}
                                     required
                                     placeholder={adCategory}
                                 >
                                     <option></option>
                                     {categories && categories.map((i: any, index) =>
-                                        <option key={index} value={i._id}>{i.name}</option>
+                                        <option key={index} value={i.slug}>{i.name}</option>
                                     )}
                                 </select>
                             </div>
@@ -240,7 +240,7 @@ export const UserAdsForm = (userJson) => {
                             </div>
                         </label>
 
-                        <label htmlFor="images" className="area">
+                        {/* <label htmlFor="images" className="area">
                             <div className="area--title">Imagens:</div>
                             <div className="area--images">
                                 {adImages && adImages.map((item: any, index) =>
@@ -254,7 +254,7 @@ export const UserAdsForm = (userJson) => {
                                     </figure>
                                 )}
                             </div>
-                        </label>
+                        </label> */}
 
                         <div className="area">
                             <div className="area--input">
