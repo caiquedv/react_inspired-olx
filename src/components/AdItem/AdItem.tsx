@@ -19,7 +19,7 @@ export const AdItem = (props) => {
                     {props.data.images &&
                         props.data.images.map((item, index) =>
                             <img key={index} 
-                            src={item.default == true ? `http://alunos.b7web.com.br:501/media/${item.url}` : ''} 
+                            src={`http://alunos.b7web.com.br:501/media/${item.url}`} 
                             alt="" />
                         )}
                     {!props.data.images &&

@@ -36,7 +36,7 @@ export const Ads = () => {
 
         const json = await OlxAPI.getAds({
             sort: 'desc',
-            limit: 2,
+            limit: 6,
             q, 
             cat, 
             state,

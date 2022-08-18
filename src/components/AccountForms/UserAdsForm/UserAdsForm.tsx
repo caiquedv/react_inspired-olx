@@ -63,19 +63,19 @@ export const UserAdsForm = (userJson) => {
         }
     };
 
-    const delImage = (e, url) => {
-        const filterDelImages = () => {
-            return deletedImages.filter((item) => item != url);
-        };
+    // const delImage = (e, url) => {
+    //     const filterDelImages = () => {
+    //         return deletedImages.filter((item) => item != url);
+    //     };
 
-        let btnValue = e.currentTarget.innerText;
+    //     let btnValue = e.currentTarget.innerText;
 
-        if (btnValue != 'Desfazer') {
-            setDeletedImages(arr => [...arr, url]);
-        } else {
-            setDeletedImages(filterDelImages);
-        }
-    };
+    //     if (btnValue != 'Desfazer') {
+    //         setDeletedImages(arr => [...arr, url]);
+    //     } else {
+    //         setDeletedImages(filterDelImages);
+    //     }
+    // };
 
 
     const handleSubmit = async (e) => {
@@ -100,11 +100,11 @@ export const UserAdsForm = (userJson) => {
             //     fData.append('images', newImage)
             // };
 
-            // if (fileField.current.files.length > 0) {
-            //     for (let i = 0; i < fileField.current.files.length; i++) {
-            //         fData.append('img', fileField.current.files[i]);
-            //     }
-            // }
+            if (fileField.current.files.length > 0) {
+                for (let i = 0; i < fileField.current.files.length; i++) {
+                    fData.append('img', fileField.current.files[i]);
+                }
+            }
             const json = await OlxAPI.updateAds(fData, adId);
             if (!json.error) {
                 setDisabledModal(true);

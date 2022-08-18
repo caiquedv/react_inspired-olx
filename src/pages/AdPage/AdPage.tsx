@@ -21,7 +21,7 @@ export const AdPage = () => {
             setAdInfo(json);
             setLoading(false);
         }
-        getAdInfo(id);
+        getAdInfo(id); 
     }, [id]);
 
     const formatDate = (date) => {
