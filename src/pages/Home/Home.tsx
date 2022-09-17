@@ -43,7 +43,7 @@ export const Home = () => {
             <SearchArea>
                 <PageContainer>
                     <div className="searchBox">
-                        <form method="GET" action="/ads">
+                        <form method="GET" action="/react_inspired-olx/ads">
                             <input type="text" name="q" placeholder="O que você procura?" />
                             <select name="state" id="">
                                 {stateList.map((item: any, index) =>
@@ -55,7 +55,7 @@ export const Home = () => {
                     </div>
                     <div className="categoryList">
                         {categories.map((item: any, index) =>
-                            <Link key={index} to={`/ads?cat=${item.slug}`} className="categoryItem">
+                            <Link key={index} to={`/react_inspired-olx/ads?cat=${item.slug}`} className="categoryItem">
                                 <img src={item.img} alt="" />
                                 <span>{item.name}</span>
                             </Link>
@@ -71,7 +71,7 @@ export const Home = () => {
                             <AdItem key={index} data={item} />
                         )}
                     </div>
-                    <Link to="/ads" className="seeAllLink">Ver Todos</Link>
+                    <Link to="/react_inspired-olx/ads" className="seeAllLink">Ver Todos</Link>
 
                     <hr /> 
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit sunt qui ipsa saepe nam, iste recusandae cupiditate sint est omnis? Perferendis ipsum officiis, consequatur soluta aliquam sit quo odio sunt!

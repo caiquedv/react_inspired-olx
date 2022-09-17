@@ -63,7 +63,7 @@ export const AddAd = () => {
             const json = await OlxAPI.addAd(fData);
             
             if(!json.error) {
-                navigate(`/ad/${json.id}`);
+                navigate(`/react_inspired-olx/ad/${json.id}`);
                 return;
             } else {
                 setError(json.error);

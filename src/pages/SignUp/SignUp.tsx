@@ -50,7 +50,7 @@ export const SignUp = () => {
         } else {
             doLogin(json.token);
             
-            window.location.href = '/';
+            window.location.href = '/react_inspired-olx';
         }
         setDisabled(false);
     }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Item } from './styled';
 import { Link } from 'react-router-dom';
 
@@ -14,7 +14,7 @@ export const AdItem = (props) => {
 
     return (
         <Item className="adItem">
-            <Link to={`/ad/${props.data.id}`}>
+            <Link to={`/react_inspired-olx/ad/${props.data.id}`}>
                 <div className="itemImage">
                     {props.data.images &&
                         props.data.images.map((item, index) =>

@@ -9,7 +9,7 @@ export const Header = () => {
 
     const handleLogout = () => {
         doLogout();
-        window.location.href = '/';
+        window.location.href = '/react_inspired-olx';
     }
     // console.log(window.location.pathname)
 
@@ -28,7 +28,7 @@ export const Header = () => {
         <HeaderArea>
             <div className="container">
                 <div className="logo">
-                    <Link to='/'>
+                    <Link to='/react_inspired-olx'>
                         <span className="logo-1">O</span>
                         <span className="logo-2">L</span>
                         <span className="logo-3">X</span>
@@ -39,26 +39,26 @@ export const Header = () => {
                         {logged &&
                             <>
                                 <li>
-                                    <Link to="/my-account">Minha Conta</Link>
+                                    <Link to="/react_inspired-olx/my-account">Minha Conta</Link>
                                 </li>
                                 <li>
                                     <button onClick={handleLogout}>Sair</button>
                                 </li>
                                 <li>
-                                    <Link to="/post-an-ad" className="button">Poste um anúncio</Link>
+                                    <Link to="/react_inspired-olx/post-an-ad" className="button">Poste um anúncio</Link>
                                 </li>
                             </>
                         }
                         {!logged &&
                             <>
                                 <li>
-                                    <Link to="/signin">Login</Link>
+                                    <Link to="/react_inspired-olx/signin">Login</Link>
                                 </li>
                                 <li>
-                                    <Link to="/signup">Cadastrar</Link>
+                                    <Link to="/react_inspired-olx/signup">Cadastrar</Link>
                                 </li>
                                 <li>
-                                    <Link to="/signin" className="button">Poste um anúncio</Link>
+                                    <Link to="/react_inspired-olx/signin" className="button">Poste um anúncio</Link>
                                 </li>
                             </>
                         }
