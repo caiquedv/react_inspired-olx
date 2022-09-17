@@ -166,7 +166,7 @@ export const UserAdsForm = (userJson) => {
                             </div>
                         </label>
 
-                        <label htmlFor="status" className="area">
+                        {/* <label htmlFor="status" className="area">
                             <div className="area--title">Visível</div>
                             <div className="area--input">
                                 <input type="checkbox" name="status" id="status"
@@ -175,7 +175,7 @@ export const UserAdsForm = (userJson) => {
                                     onChange={e => setAdStatus(!adStatus)}
                                 />
                             </div>
-                        </label>
+                        </label> */}
 
                         <label htmlFor="categories" className="area">
                             <div className="area--title">Categoria</div>
