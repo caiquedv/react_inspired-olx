@@ -30,7 +30,7 @@ Projeto desenvolvido para fins didáticos durante o curso do [Bonyeck Lacerda](h
 É um projeto com muitas funcionalidades entre elas pesquisar anúncios por filtros, login, postar anúncios, área do usuário para editar dados da conta e anúncios postados. <br>
 Utiliza React Router Dom, hooks e reducers do Redux e login por meio de cookies. <br>
 Consome dados de uma API compartilhada entre os alunos da B7Web.<br> <br>
-Este é um projeto antigo da plataforma e possui alguns bugs. A API usa protocolo HTTP então não é possível realizar as requisições necessárias quando implantado no GitHub Pages, erro "Mixed content". Caso saiba como resolver sem acesso as configurações da API, por favor entre em contato.
+Este é um projeto antigo da plataforma e possui alguns bugs. A API usa protocolo HTTP então não é possível realizar as requisições necessárias quando implantado no GitHub Pages, erro "Mixed content". Caso saiba como resolver sem acesso as configurações da API ou onde estudar a solução, por favor entre em contato.
 Há a pretenção de desenvolver uma nova versão após concluir os estudos em NodeJS para a criação de API própria. <br>
 Para ver o projeto completo, rode localmente.
 
