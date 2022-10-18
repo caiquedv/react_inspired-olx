@@ -49,9 +49,9 @@ export const AddAd = () => {
             const fData: any = new FormData();
             fData.append('title', title);
             fData.append('price', price);
-            fData.append('priceneg', priceNegotiable);
-            fData.append('desc', desc);
-            fData.append('cat', category);
+            fData.append('priceNegotiable', priceNegotiable);
+            fData.append('description', desc);
+            fData.append('category', category);console.log(category)
             
 
             if(fileField.current.files.length > 0) {
@@ -59,7 +59,7 @@ export const AddAd = () => {
                     fData.append('img', fileField.current.files[i]);
                 }
             }
-            console.log(fData)
+            // console.log(fData)
             const json = await OlxAPI.addAd(fData);
             
             if(!json.error) {
@@ -112,7 +112,7 @@ export const AddAd = () => {
                             >
                                 <option></option>
                                 {categories && categories.map((i: any, index) =>
-                                    <option key={index} value={i._id}>{i.name}</option>
+                                    <option key={index} value={i.slug}>{i.name}</option>
                                 )}
                             </select>
                         </div>

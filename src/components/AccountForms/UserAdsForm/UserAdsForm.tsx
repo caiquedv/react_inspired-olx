@@ -40,59 +40,59 @@ export const UserAdsForm = (userJson) => {
     });
 
     const modalHandler = (e, adItem?) => {
+        e.preventDefault();
         let btnId = e.target.id;
+        // console.log('aq',adItem)
 
         if (btnId !== 'close') {
-            e.preventDefault();
-
             setDisabledModal(false);
-
             setAdTitle(adItem.title);
             setAdStatus(adItem.status);
             setAdCategory(adItem.category);
             setNegPrice(adItem.priceNegotiable);
             setAdPrice(adItem.price);
-            setAdDescription(adItem.description);
+            setAdDescription(adItem.description !== 'undefined' ? adItem.description : '');
             setAdImages(adItem.images);
-            setAdId(adItem.id);
-            console.log(adItem);
-            
+            setAdId(adItem._id);
+            // console.log(adItem);
+
         } else {
             setDisabledModal(true);
             setDeletedImages([])
         }
     };
 
-    // const delImage = (e, url) => {
-    //     const filterDelImages = () => {
-    //         return deletedImages.filter((item) => item != url);
-    //     };
+    const delImage = (e, url) => {
+        const filterDelImages = () => {
+            return deletedImages.filter((item) => item != url);
+        };
 
-    //     let btnValue = e.currentTarget.innerText;
+        let btnValue = e.currentTarget.innerText;
 
-    //     if (btnValue != 'Desfazer') {
-    //         setDeletedImages(arr => [...arr, url]);
-    //     } else {
-    //         setDeletedImages(filterDelImages);
-    //     }
-    // };
+        if (btnValue != 'Desfazer') {
+            setDeletedImages(arr => [...arr, url]);
+        } else {
+            setDeletedImages(filterDelImages);
+        }
+    };
 
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         setDisabled(true);
         setError('');
         let errors: any[] = [];
         let newImage: any = [];
-        console.log(adSlugIdCategory)
+        // console.log(adSlugIdCategory)
         if (errors.length === 0) {
             const fData: any = new FormData();
             fData.append('title', adTitle);
             fData.append('status', adStatus);
             fData.append('price', adPrice);
             fData.append('priceneg', adNegPrice);
-            fData.append('desc', adDescription);
-            fData.append('cat', adSlugIdCategory);
+            fData.append('description', adDescription);
+            fData.append('category', adSlugIdCategory);
+            fData.append('delImages', deletedImages);
             // if (deletedImages[0]) {
             //     adImages.map((item) => {
             //         if (!deletedImages.includes(item.url)) newImage.push(item);
@@ -102,12 +102,14 @@ export const UserAdsForm = (userJson) => {
 
             if (fileField.current.files.length > 0) {
                 for (let i = 0; i < fileField.current.files.length; i++) {
+                    // console.log(fileField.current.files)
                     fData.append('img', fileField.current.files[i]);
                 }
             }
-            const json = await OlxAPI.updateAds(fData, adId);
+            const json = await OlxAPI.updateAds(fData, adId); //console.log(json)
             if (!json.error) {
                 setDisabledModal(true);
+                setDisabled(false);
                 return;
             } else {
                 setError(json.error);
@@ -115,7 +117,6 @@ export const UserAdsForm = (userJson) => {
         } else {
             setError(errors.join("\n"));
         }
-        setDisabled(false);
     };
 
     useEffect(() => {
@@ -124,7 +125,7 @@ export const UserAdsForm = (userJson) => {
                 const userData = json.userData;
                 setUserAds(userData.ads);
             } catch { }
-        };
+        };// console.log(userJson)
         getEditableAds(userJson);
     }, [userJson]);
 
@@ -152,7 +153,9 @@ export const UserAdsForm = (userJson) => {
                         <div>{error}</div>
                     }
                     <form onSubmit={handleSubmit}>
-                        <button id="close" onClick={(e) => modalHandler(e)}>X</button>
+                        <div id="closeFormModal">
+                            <button id="close" onClick={(e) => modalHandler(e)}>X</button>
+                        </div>
 
                         <label htmlFor="title" className="area">
                             <div className="area--title">Título</div>
@@ -186,7 +189,7 @@ export const UserAdsForm = (userJson) => {
                                     required
                                     placeholder={adCategory}
                                 >
-                                    <option></option>
+
                                     {categories && categories.map((i: any, index) =>
                                         <option key={index} value={i.slug}>{i.name}</option>
                                     )}
@@ -240,7 +243,7 @@ export const UserAdsForm = (userJson) => {
                             </div>
                         </label>
 
-                        {/* <label htmlFor="images" className="area">
+                        <label htmlFor="images" className="area">
                             <div className="area--title">Imagens:</div>
                             <div className="area--images">
                                 {adImages && adImages.map((item: any, index) =>
@@ -248,17 +251,17 @@ export const UserAdsForm = (userJson) => {
                                         <CloseSpan onClick={(e) => delImage(e, item.url)}>
                                             {deletedImages.includes(item.url) ? 'Desfazer' : 'X'}
                                         </CloseSpan>
-                                        <img src={`http://alunos.b7web.com.br:501/media/${item.url}`} alt=""
+                                        <img src={`http://localhost:2000/media/${item.url}`} alt=""
                                             hidden={deletedImages.includes(item.url) ? true : false}
                                         />
                                     </figure>
                                 )}
                             </div>
-                        </label> */}
+                        </label>
 
                         <div className="area">
                             <div className="area--input">
-                                <button id="submit" disabled={false}>Adicionar Anúncio</button>
+                                <button id="submit" disabled={disabled}>Adicionar Anúncio</button>
                             </div>
                         </div>
                     </form>

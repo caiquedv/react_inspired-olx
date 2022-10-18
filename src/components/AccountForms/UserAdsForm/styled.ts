@@ -31,9 +31,14 @@ gap: 1.5rem;
 `;
 
 export const FormArea = styled(PageArea)`
-position: absolute; 
-top: 15%; 
+position: fixed; 
+top: 1.5rem; 
 background-color: #FFF;
+
+#closeFormModal {
+    width: 100%;
+    text-align: right;
+}
 
 .area--images {
     display: flex;

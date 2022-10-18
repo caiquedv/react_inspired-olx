@@ -76,7 +76,7 @@ export const AdPage = () => {
                             </div>
                             <div className="adDescription">
                                 {loading && <Fake height={100} />}
-                                {adInfo.description}
+                                {adInfo.description !== 'undefined' ? adInfo.description : 'Sem descrição'}
                                 <hr /> 
                                 {adInfo.views &&
                                     <small>Visualizações: {adInfo.views}</small>
