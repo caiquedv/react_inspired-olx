@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Item } from './styled';
 import { Link } from 'react-router-dom';
 
@@ -10,19 +10,18 @@ export const AdItem = (props) => {
     } else {
         price = `R$ ${props.data.price}`;
     }
-    
+    // console.log(props.data);
 
     return (
         <Item className="adItem">
-            <Link to={`/ad/${props.data.id ? props.data.id : props.data._id}`}>
+            <Link to={`/react_inspired-olx/ad/${props.data.id}`}>
                 <div className="itemImage">
-
                     {props.data.images &&
-                        <img src={`http://localhost:2000/media/${props.data.images[0] ? props.data.images[0].url : 'default.jpg'}`}
-                            alt=""
-                        />
-                    }
-
+                        props.data.images.map((item, index) =>
+                            <img key={index} 
+                            src={`http://alunos.b7web.com.br:501/media/${item.url}`} 
+                            alt="" />
+                        )}
                     {!props.data.images &&
                         <img src={props.data.image} alt="" />
                     }

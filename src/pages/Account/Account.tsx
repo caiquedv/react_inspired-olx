@@ -15,7 +15,7 @@ export const Account = () => {
         const getUserInfo = async () => {
             const json = await OlxAPI.getUserData(Cookies.get('token'));
             setUserJson(json);
-            // console.log(json)
+            
         };
         getUserInfo();
         // console.log(typeof(userJson));
