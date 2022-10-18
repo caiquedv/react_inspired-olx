@@ -10,7 +10,7 @@ export const AdItem = (props) => {
     } else {
         price = `R$ ${props.data.price}`;
     }
-    // console.log(props.data);
+    
 
     return (
         <Item className="adItem">
