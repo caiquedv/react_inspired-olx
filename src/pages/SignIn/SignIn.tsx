@@ -20,7 +20,6 @@ export const SignIn = () => {
         setError('');
 
         const json = await OlxAPI.login(email, password);
-        // console.log(json)
 
         if(json.error) {
             setError(json.error);
